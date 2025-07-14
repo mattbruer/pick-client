@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+:root {
+	--topbar-height: 4rem;
+	--controlbar-height: 10rem;
+	--primary-color: rgb(35, 50, 84);
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+button {
+	cursor: pointer;
+	touch-action: manipulation;
+	outline: none;
+}
+
+.btn {
+	min-height: 40px;
+	box-shadow: 0px 0px 5px black;
+	border-radius: 0.25rem;
+	padding: 0px 0.5rem;
+}
+
+.regular-button {
+	box-shadow: 0px 0px 5px black;
+	border-radius: 5px;
+	padding: 0.5rem 1rem;
+}
+.regular-button:hover {
+	box-shadow: 0px 0px 10px black;
+}
+
+.red {
+	border: 1px solid red;
+}
