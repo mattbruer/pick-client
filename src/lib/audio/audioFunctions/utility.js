@@ -1,4 +1,3 @@
-import { tempo } from '$lib/stores/audioStore'
 import { get } from 'svelte/store'
 import { parts, guitarPart, mandoPart } from '$lib/stores/songStore'
 import { getAudioContext } from '../audioContext'

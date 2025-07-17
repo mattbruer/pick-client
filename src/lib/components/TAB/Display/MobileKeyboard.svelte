@@ -3,9 +3,10 @@
 	import { onMount } from 'svelte'
 	import Keypad from '../Keypad/Keypad.svelte'
 	import { parts } from '$lib/stores/songStore'
-	import { selectedPart } from '../tabStore'
+	import { selectedPart, selectedEvent } from '../tabStore'
 	import { TUNINGS } from '$lib/constants'
-	import { selectedString } from '../tabStore'
+	import Icon from '@iconify/svelte'
+	import { selectedString, selectedFret, selectedDuration } from '../tabStore'
 
 	$: strings = [...TUNINGS[$parts[$selectedPart].instrument]].reverse()
 
@@ -30,6 +31,8 @@
 		} else {
 			value = num
 		}
+
+		$selectedFret = value
 	}
 </script>
 
@@ -61,6 +64,31 @@
 		</div>
 		<div class="h-[100px] w-[100px] rounded border bg-white text-black">
 			{$selectedString}{value}
+		</div>
+		<div class="flex gap-1">
+			<button
+				class="btn bg-white text-black"
+				on:click={() => {
+					$parts[$selectedPart].sequence.push({
+						notes: { [$selectedString]: value },
+						duration: $selectedDuration
+					})
+					$parts = $parts
+				}}>Enter</button
+			>
+			<button
+				class="flex w-[40px] items-center justify-center rounded bg-white"
+				on:click={() => $selectedEvent--}
+			>
+				<Icon width="20px" color="black" icon="mdi:arrow-left" />
+			</button>
+			<button
+				class="flex w-[40px] items-center justify-center rounded bg-white"
+				on:click={() => $selectedEvent++}
+			>
+				<Icon width="20px" color="black" icon="mdi:arrow-right" />
+			</button>
+			<div>{$selectedEvent}</div>
 		</div>
 	</div>
 

@@ -43,11 +43,16 @@
 					Section:
 					<input class="section-input" type="text" bind:value={$song.sections[sectionId].name} />
 				</div>
-
-				<div>
-					Repeat
-					<input class="repeat-input" type="number" bind:value={$song.sections[sectionId].repeat} />
-				</div>
+				{#if $song.sectionOrder.length > 1}
+					<div>
+						Repeat
+						<input
+							class="repeat-input"
+							type="number"
+							bind:value={$song.sections[sectionId].repeat}
+						/>
+					</div>
+				{/if}
 			</div>
 			<button class="mr-4" on:click={() => song.deleteSection(sectionId)}>
 				<Icon width="20px" icon="iconoir:trash" color="red" />

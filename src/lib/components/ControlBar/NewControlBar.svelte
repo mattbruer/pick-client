@@ -8,8 +8,11 @@
 	import MobileKeyboard from '../TAB/Display/MobileKeyboard.svelte'
 	import Modal from '$lib/components/UI/Modal.svelte'
 	import AddPart from '../TAB/Display/AddPart.svelte'
+	import Record from '../Record/Record.svelte'
+	import AddAudio from '../TAB/Display/AddAudio.svelte'
 
 	let showAddPart = false
+	let showAddAudio = false
 
 	const addMeasure = () => {
 		const sectionId = $song.sectionOrder[$selectedSection]
@@ -34,8 +37,17 @@
 
 		<button class="btn bg-white text-black" on:click={toggleMixer}>Mixer</button>
 		<button class="btn bg-white text-black" on:click={() => ($editMode = true)}>Edit</button>
+		<button
+			class="btn bg-white text-black"
+			on:click={() => {
+				alert('To Do')
+			}}>Save</button
+		>
 		<div class="flex">
-			<button class="btn bg-white text-black" on:click={() => {}}>Add Audio Track</button>
+			<button class="btn bg-white text-black" on:click={() => (showAddAudio = true)}
+				>Add Audio Track</button
+			>
+			<Record />
 			<PlaybackControls />
 		</div>
 	{/if}
@@ -47,6 +59,12 @@
 	{#if showAddPart}
 		<Modal close={() => (showAddPart = false)}
 			><AddPart close={() => (showAddPart = false)} /></Modal
+		>
+	{/if}
+
+	{#if showAddAudio}
+		<Modal close={() => (showAddPart = false)}
+			><AddAudio close={() => (showAddAudio = false)} /></Modal
 		>
 	{/if}
 </div>

@@ -11,7 +11,8 @@
 
 	export let sectionId
 
-	$: instrument = $parts[$selectedPart].instrument
+	$: part = $parts[$selectedPart]
+	$: console.log('part', part)
 
 	onMount(() => {
 		setScrollable({ [sectionId]: mainPartEl })
@@ -35,7 +36,7 @@
 
 	<div class="flex">
 		<div class="strings z-900 flex h-[200px] w-[30px] flex-col items-center pt-[40px]">
-			{#each TUNINGS[instrument] as string (string)}
+			{#each TUNINGS[part.instrument] as string (string)}
 				<div
 					class="string flex h-[20px] w-[20px] items-center justify-center"
 					class:selectedString={$selectedString == string}
@@ -49,20 +50,21 @@
 
 			<div
 				class="tab-container relative"
-				style={`height:${TUNINGS[instrument].length * 20}px;width:${$horizontalSpacing * 16 * $measureCount[sectionId]}px`}
+				style={`height:${TUNINGS[part.instrument].length * 20}px;width:${$horizontalSpacing * 16 * $measureCount[sectionId]}px`}
 			>
 				{#each $song.sections[sectionId].measureOrder as barline, i (barline)}
 					<div
-						style={`left: ${$horizontalSpacing * 16 * (i + 1)}px; height:${TUNINGS[instrument].length * 20}px`}
+						style={`left: ${$horizontalSpacing * 16 * (i + 1)}px; height:${TUNINGS[part.instrument].length * 20}px`}
 						class="barline absolute w-[1px]"
 					></div>
 				{/each}
-				{#each TUNINGS[instrument] as string, i (string)}
+				{#each TUNINGS[part.instrument] as string, i (string)}
 					<div class="absolute h-[1px] w-[100%] bg-black" style={`top: ${i * 20 + 10}px;`}></div>
 				{/each}
 				<div class="flex">
-					<Event />
-					<Event />
+					{#each part.sequence as event, i (i)}
+						<Event {event} position={i} />
+					{/each}
 				</div>
 			</div>
 		</div>

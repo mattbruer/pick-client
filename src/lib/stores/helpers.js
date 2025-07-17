@@ -60,6 +60,7 @@ export const createSongStore = () => {
 			update((song) => {
 				console.log('measureId', measureId)
 				console.log('song', song)
+				alert('To Do')
 			})
 		},
 		clearChord: (ch, section) => {
@@ -68,6 +69,7 @@ export const createSongStore = () => {
 					song.sections[song.sectionOrder[section]].measureOrder.indexOf(ch.measureId) == 0 &&
 					ch.position == 0
 				) {
+					alert('First chord cannot be empty')
 					return song
 				}
 

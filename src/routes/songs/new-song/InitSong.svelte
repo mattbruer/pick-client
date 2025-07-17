@@ -62,7 +62,7 @@
 					goto('/songs/new')
 				}
 			}}
-			class="regular-button">Let's Pick!</button
+			class="regular-button">{step == 3 ? "Let's Pick!" : 'Next'}</button
 		>
 	</div>
 </div>

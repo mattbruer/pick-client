@@ -11,7 +11,7 @@
 		} else {
 			$selectedDuration = note
 		}
-		document.getElementById('fret-input').focus()
+		// document.getElementById('fret-input').focus()
 	}
 </script>
 

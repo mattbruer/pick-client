@@ -15,7 +15,7 @@
 	.option {
 		height: 20rem;
 		width: 18rem;
-		box-shadow: 0px 5px 15px var(--primπary-color);
+		box-shadow: 0px 5px 15px var(--primary-color);
 		padding: 2rem;
 		margin: 2rem;
 		border-radius: 1rem;

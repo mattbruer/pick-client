@@ -5,7 +5,7 @@
 	export let toggleMixer
 </script>
 
-<div class="board red flex w-full flex-col overflow-scroll">
+<div class="board flex w-full flex-col overflow-scroll">
 	<button on:click={toggleMixer} class="btn ml-auto h-[40px] w-[40px] bg-white text-black">X</button
 	>
 	<div class="flex gap-6">

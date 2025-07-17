@@ -7,6 +7,7 @@
 	import { key } from '$lib/stores/songStore'
 	import ChordPicker from './chords/ChordPicker.svelte'
 	import { category } from '$lib/stores/chordProgressionStore'
+	import { onMount } from 'svelte'
 
 	// $: if (typeof $selectedChordInput?.position == 'number') {
 	// 	document.documentElement.style.setProperty('--controlbar-height', '250px')
@@ -18,6 +19,10 @@
 	$: if ($key.mode) {
 		categories = [...new Set(lookup[$key.mode].map((cs) => cs.category))]
 	}
+	onMount(() => {
+		const mode = $key.mode
+		$category = `Diatonic ${mode.charAt(0).toUpperCase() + mode.slice(1)}`
+	})
 </script>
 
 {#if typeof $selectedChordInput?.position == 'number'}
